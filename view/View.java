@@ -1,6 +1,6 @@
 package org.example.view;
 
-import org.example.controller.Controller;
+import org.example.controller.Controller2;
 import org.example.moduls.NoFolder;
 import org.example.moduls.SaveData;
 import org.example.moduls.Shop;
@@ -8,7 +8,6 @@ import org.example.moduls.Toy;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class View {
@@ -41,12 +40,15 @@ public class View {
             }
 
         }
-        Controller controller = new Controller(toyList);
+        Controller2 controller = new Controller2(toyList);
         System.out.println("В таком порядке выпали бы игрушки 10 раз!");
-        Queue<Toy> queue = controller.get(10);
-        controller.printQueue(queue);
+        System.out.println("id вес name");
+        for (int i = 0; i < 10; i++) {
+            System.out.println(controller.get());
+        }
         SaveData saveData = new SaveData();
-        String res = saveData.saveData(queue);
+        String res = saveData.saveData(controller.getToyQueue());
+        System.out.println(res);
         System.out.println("Готово!");
 
     }
