@@ -7,12 +7,13 @@ import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Queue;
 
 import static java.nio.file.StandardOpenOption.APPEND;
 
 public class SaveData {
-    public String saveData(Queue<Toy> queue) throws NoFolder {
+    public String saveData(List<String> queue) throws NoFolder {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         String path = "C:\\ProjectsJava\\finalBlock1\\src\\main" +
@@ -28,20 +29,24 @@ public class SaveData {
             }
             if (f.exists()){
                 try {
-                    for (Toy toy : queue) {
-                        String str = toy.toString() + "\n";
+                    for (String toy : queue) {
+                        String str = toy + "\n";
                         Files.write(Paths.get(path), str.getBytes(), APPEND);
                     }
+                    String str1 = "-------------------------------------------------------------------" + "\n";
+                    Files.write(Paths.get(path), str1.getBytes(), APPEND);
                 } catch (IOException e){
                     System.out.println(e.getMessage());
                 }
             }
         } else {
             try {
-                for (Toy toy : queue) {
-                    String str = toy.toString() + "\n";
+                for (String toy : queue) {
+                    String str = toy + "\n";
                     Files.write(Paths.get(path), str.getBytes(), APPEND);
                 }
+                String str1 = "-------------------------------------------------------------------" + "\n";
+                Files.write(Paths.get(path), str1.getBytes(), APPEND);
             } catch (IOException e){
                 System.out.println(e.getMessage());
             }
